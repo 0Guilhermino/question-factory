@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {QuestionService} from "./question.service";
 import {Question} from "./person.model";
 
@@ -20,6 +20,17 @@ export class QuestionController {
     createQuestion(@Body question: Question){
         this.questionService.createQuestion(question);
         return question;
+    }
+
+    @Put()
+    updateQuestion(@Body question: Question){
+        this.questionService.updateQuestion(question);
+        return this.getAllQuestions();
+    }
+
+    @Delete(':id')
+    deleteQuestion(@Param('id') id: number){
+        this.questionService.deleteQuestions(id);
     }
 
 
