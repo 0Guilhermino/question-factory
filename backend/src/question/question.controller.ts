@@ -7,25 +7,23 @@ export class QuestionController {
     constructor(private readonly questionService: QuestionService) {}
 
     @Get()
-    getAllQuestions(){
-        return this.questionService.getAllQuestions()
+    getAllQuestions(): Question[]{
+        return this.questionService.getAllQuestions();
     }
 
     @Get(':id')
-    getQuestionsById(@Param('id') id: number){
+    getQuestionsById(@Param('id') id: number): Question | undefined{
         return this.questionService.getQuestionsById(id);
     }
 
     @Post()
-    createQuestion(@Body question: Question){
-        this.questionService.createQuestion(question);
-        return question;
+    createQuestion(@Body() question: Question):Question{
+        return this.questionService.createQuestion(question);
     }
 
     @Put()
-    updateQuestion(@Body question: Question){
-        this.questionService.updateQuestion(question);
-        return this.getAllQuestions();
+    updateQuestion(@Body() question: Question): Question | undefined{
+        return this.questionService.updateQuestion(question);
     }
 
     @Delete(':id')

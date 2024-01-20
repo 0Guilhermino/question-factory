@@ -13,14 +13,28 @@ export class QuestionService {
         return this.questions.find(question => question.id === id);
     }
 
-    createQuestion(question: Question){
-        this.questions.push(question);
+    createQuestion(question: Question): Question{
+        const newQuestion = new Question(
+            this.questions.length + 1,
+            question.question,
+            question.questionInfo,
+            question.answer
+        );
+        this.questions.push(newQuestion);
+        return newQuestion
     }
 
     updateQuestion(updatedQuestion: Question) {
         const index = this.questions.findIndex(question => question.id === updatedQuestion.id)
         if (index !== -1){
-            this.questions[index] = updatedQuestion;
+            const newQuestion = new Question(
+                this.questions[index].id,
+                updatedQuestion.question,
+                updatedQuestion.questionInfo,
+                updatedQuestion.answer
+            );
+            this.questions[index] = newQuestion;
+            return this.questions[index]
         }
     }
 
