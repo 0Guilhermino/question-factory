@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {Question} from "./person.model";
+import {Question} from "./question.model";
 
 @Injectable()
 export class QuestionService {
