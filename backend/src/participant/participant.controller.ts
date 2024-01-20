@@ -27,7 +27,7 @@ export class ParticipantController {
     }
 
     @Delete(':id')
-    deleteQuestion(@Param('id') id: number){
+    deleteParticipant(@Param('id') id: number){
         this.participantService.deleteParticipant(id);
     }
 
